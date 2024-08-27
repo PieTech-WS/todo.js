@@ -1,0 +1,21 @@
+{
+  "name": "todo.js",
+  "version": "0.0.1",
+  "description": "Cora ToDo Core Codelib",
+  "main": "src/index.js",
+  "scripts": {
+    "compile": "tsc"
+  },
+  "keywords": [
+    "CoreApps",
+    "CoraToDo",
+    "CoraTechWS"
+  ],
+  "author": "2minRain",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.5.0",
+    "tslint": "^5.20.1",
+    "typescript": "^5.5.4"
+  }
+}
