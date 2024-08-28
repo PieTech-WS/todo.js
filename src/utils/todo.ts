@@ -14,36 +14,34 @@
    limitations under the License.
 */
 import * as fs from 'node:fs';
-import { todo, todoList, date, time } from './Types'
+import { todo, todoList, date, time, todoStorage, fileContent } from './Types'
+import storagelib from './StorageLib'
 
 const todo_not_found_err = new Error('Get todo by id error: Not Found')
 
-class Storage{
-    data!: todoList;
+class todoStorageTool{
+    todoStorage1!: todoStorage;
     stringdata!: string;
     todo_!: todo;
+    Storage1!: storagelib;
     load() {
-        try {
-            this.stringdata = fs.readFileSync('../content.txt', 'utf8'); // 将读取的内容存储到变量中
-            console.log('File content:', this.data); // 在这里可以使用 fileContent 变量
-        } catch (err) {
-            console.error('Error reading file:', err);
-        };
-        this.data = JSON.parse(this.stringdata) as todoList;
+        this.Storage1 = new storagelib('./content.txt')
+        this.Storage1.formatData<fileContent>();
+        this.todoStorage1 = this.Storage1.data_formated['todoStorage'] as todoStorage;
     };
     getTodoById(id: string) {
-        this.todo_ = this.data[id];
+        this.todo_ = this.todoStorage1.todo[id];
         if (this.todo_ == undefined){
             throw todo_not_found_err
         }
         return this.todo_;
     };
     storageTodo(id: string, todo__: todo) {
-        this.data[id] = todo__
+        this.todoStorage1.todo[id] = todo__
     }    
 }
 class TodoManage{
-    createTodo(date_: date, time_: ){
+    createTodo(time_: time, name: string, recurring_reminders_enabled: boolean, date_?: date, recurring_reminders?: string){
 
     }
 }

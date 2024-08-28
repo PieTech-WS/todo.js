@@ -1,0 +1,7 @@
+{
+    "todoStorage": {
+        "usedID": [],
+        "todo": {}
+    },
+    "todayList": []
+}
