@@ -3,7 +3,7 @@
     "target": "ES2020",                         // 指定 ECMAScript 目标版本
     "module": "CommonJS",                       // 指定模块系统
     "rootDir": "src/utils",                           // 源代码目录
-    "outDir": "src/utils/dist",                           // 输出目录
+    "outDir": "src/dist",                           // 输出目录
     "strict": true,                             // 启用所有严格类型检查选项
     "esModuleInterop": true,                    // 允许对 CommonJS 和 ES 模块之间的互操作
     "skipLibCheck": true,                       // 跳过类型声明文件的检查

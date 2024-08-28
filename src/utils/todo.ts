@@ -41,7 +41,13 @@ class todoStorageTool{
     }    
 }
 class TodoManage{
-    createTodo(time_: time, name: string, recurring_reminders_enabled: boolean, date_?: date, recurring_reminders?: string){
-
+    createTodo(time_: time, name: string, recurring_reminders_enabled: boolean, priority: number, date_?: date, recurring_reminders?: string){
+        const newtodo: todo = {
+            name: name,
+            alert_time: time_,
+            alert_date: date_,
+            recurring_reminders_enabled: recurring_reminders_enabled,
+            priority: priority
+        }
     }
 }
