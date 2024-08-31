@@ -25,7 +25,8 @@ class todoStorageTool{
     todo_!: todo;
     Storage1!: storagelib;
     load() {
-        this.Storage1 = new storagelib('./content.txt')
+        this.Storage1 = new storagelib('./src/utils/content.txt')
+        this.Storage1.getData();
         this.Storage1.formatData<fileContent>();
         this.todoStorage1 = this.Storage1.data_formated['todoStorage'] as todoStorage;
     };
@@ -38,9 +39,17 @@ class todoStorageTool{
     };
     storageTodo(id: string, todo__: todo) {
         this.todoStorage1.todo[id] = todo__
-    }    
+    };
+    saveTodoList() {
+        
+    }
 }
-class TodoManage{
+export class TodoManage{
+    todoStoragetool_!: todoStorageTool;
+    init_Manager() {
+        this.todoStoragetool_ = new todoStorageTool;
+        this.todoStoragetool_.load();
+    };
     createTodo(time_: time, name: string, recurring_reminders_enabled: boolean, priority: number, date_?: date, recurring_reminders?: string){
         const newtodo: todo = {
             name: name,
@@ -49,5 +58,7 @@ class TodoManage{
             recurring_reminders_enabled: recurring_reminders_enabled,
             priority: priority
         }
+        this.todoStoragetool_.storageTodo('1', newtodo);
+        console.log(this.todoStoragetool_.todoStorage1)
     }
 }

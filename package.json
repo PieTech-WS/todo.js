@@ -4,7 +4,8 @@
   "description": "Cora ToDo Core Codelib",
   "main": "src/index.js",
   "scripts": {
-    "compile": "tsc"
+    "compile": "tsc",
+    "test": "ts-node src/utils/test.ts"
   },
   "keywords": [
     "CoreApps",

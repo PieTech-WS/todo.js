@@ -13,3 +13,21 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
+import { todoManage } from './dist/todo';
+import { time, date } from './dist/Types'
+tm = new todoManage;
+tm.init_manager();
+time = new time;
+time.hour = 9;
+time.minute = 18;
+date = new date;
+date.year = 2024;
+date.month = 8;
+date.date = 31;
+tm.createTodo(
+    time,
+    'todotest',
+    false,
+    3,
+    date
+)

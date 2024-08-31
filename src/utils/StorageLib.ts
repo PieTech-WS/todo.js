@@ -25,7 +25,7 @@ export default class storage{
     };
     getData(){
         try {
-            this.stringdata = fs.readFileSync('../content.txt', 'utf8'); // 将读取的内容存储到变量中
+            this.stringdata = fs.readFileSync(this.file, 'utf8'); // 将读取的内容存储到变量中
             this.data = JSON.parse(this.stringdata)
             console.log('File content:', this.data); // 在这里可以使用 fileContent 变量
             return this.data;
