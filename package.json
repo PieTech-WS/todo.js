@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "compile": "tsc",
-    "test": "ts-node src/utils/test.ts"
+    "test": "ts-node src/common/todo.ts"
   },
   "keywords": [
     "CoreApps",

@@ -1,5 +1,3 @@
 {
-    "desktop": {
-        "storage": "storage/"
-    }
+    "platform": "desktop"
 }

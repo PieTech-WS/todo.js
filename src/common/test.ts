@@ -1,5 +1,5 @@
 import { TodoManage } from './todo';
-import { time, date } from '../platform/desktop/Types'
+import { time, date } from '../platform/desktop/Interfaces'
 const tm = new TodoManage;
 tm.init_Manager();
 const Time: time = {

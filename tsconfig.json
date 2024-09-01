@@ -10,6 +10,6 @@
     "skipLibCheck": true,                       // 跳过类型声明文件的检查
     "forceConsistentCasingInFileNames": true    // 强制文件名大小写一致
   },
-  "include": ["src/**/*.ts"],                   // 包含src目录下的所有TypeScript文件
+  "include": ["src/**/*.ts", "src/platform/vela/uuidgen.ts"],                   // 包含src目录下的所有TypeScript文件
   "exclude": ["node_modules"]                   // 排除node_modules目录
 }

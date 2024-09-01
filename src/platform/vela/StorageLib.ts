@@ -16,42 +16,36 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-export class JSONFileHandler {
+export default class JSONFileHandler<T> {
     private filePath: string;
 
     constructor(filePath: string) {
         this.filePath = path.resolve(filePath);
     }
 
-    // 读取 JSON 文件
-    public readJSON(): Promise<any> {
-        return new Promise((resolve, reject) => {
-            fs.readFile(this.filePath, 'utf8', (err, data) => {
-                if (err) {
-                    reject(err);
-                    return;
-                }
-                try {
-                    const jsonData = JSON.parse(data);
-                    resolve(jsonData);
-                } catch (parseError) {
-                    reject(parseError);
-                }
-            });
-        });
+    // 使用 require 同步读取 JSON 文件
+    public readJSONSync(): T {
+        // 确保文件未被缓存
+        delete require.cache[require.resolve(this.filePath)];
+        const data: T = require(this.filePath);
+        return data;
     }
 
-    // 写入 JSON 文件
-    public writeJSON(data: any): Promise<void> {
-        return new Promise((resolve, reject) => {
-            const jsonString = JSON.stringify(data, null, 4);
-            fs.writeFile(this.filePath, jsonString, 'utf8', (err) => {
-                if (err) {
-                    reject(err);
-                    return;
-                }
-                resolve();
-            });
-        });
+    // 使用 fs 模块异步读取 JSON 文件
+    public async readJSON(): Promise<T> {
+        const fileContent = await fs.promises.readFile(this.filePath, 'utf8');
+        return JSON.parse(fileContent) as T;
+    }
+
+    // 使用 fs 模块同步写入 JSON 文件
+    public writeJSONSync(data: T): void {
+        const jsonString = JSON.stringify(data, null, 4); // 格式化 JSON 字符串
+        fs.writeFileSync(this.filePath, jsonString, 'utf8');
+    }
+
+    // 使用 fs 模块异步写入 JSON 文件
+    public async writeJSON(data: T): Promise<void> {
+        const jsonString = JSON.stringify(data, null, 4); // 格式化 JSON 字符串
+        await fs.promises.writeFile(this.filePath, jsonString, 'utf8');
     }
 }

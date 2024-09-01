@@ -13,51 +13,25 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import { todo, todoList, date, time, todoStorage, fileContent } from '../platform/desktop/Types'
-import storagelib from '../platform/desktop/StorageLib'
 
-const todo_not_found_err = new Error('Get todo by id error: Not Found')
+import config from '../../config/config.json';
+import { TodoStore } from './todoStorage';
+import { todo } from '../platform/desktop/Interfaces';
+const todoStore = new TodoStore('./storage/todo.json');
 
-class todoStorageTool{
-    todoStorage1!: todoStorage;
-    stringdata!: string;
-    todo_!: todo;
-    Storage1!: storagelib;
-    load() {
-        this.Storage1 = new storagelib()
-        this.Storage1.getData();
-        this.Storage1.formatData<fileContent>();
-        this.todoStorage1 = this.Storage1.data_formated['todoStorage'] as todoStorage;
-    };
-    getTodoById(id: string) {
-        this.todo_ = this.todoStorage1.todo[id];
-        if (this.todo_ == undefined){
-            throw todo_not_found_err
-        }
-        return this.todo_;
-    };
-    storageTodo(id: string, todo__: todo) {
-        this.todoStorage1.todo[id] = todo__
-    };
-    saveTodoList() {
-        
-    }
-}
-export class TodoManage{
-    todoStoragetool_!: todoStorageTool;
-    init_Manager() {
-        this.todoStoragetool_ = new todoStorageTool;
-        this.todoStoragetool_.load();
-    };
-    createTodo(time_: time, name: string, recurring_reminders_enabled: boolean, priority: number, date_?: date, recurring_reminders?: string){
-        const newtodo: todo = {
-            name: name,
-            alert_time: time_,
-            alert_date: date_,
-            recurring_reminders_enabled: recurring_reminders_enabled,
-            priority: priority
-        }
-        this.todoStoragetool_.storageTodo('1', newtodo);
-        console.log(this.todoStoragetool_.todoStorage1)
-    }
-}
+// 添加新待办事项
+const newTodo: todo = {
+    name: "Walk the dog",
+    alert_time: { hour: 7, minute: 30 },
+    recurring_reminders_enabled: true,
+    recurring_reminders: "daily",
+    priority: 2,
+    completed: false
+};
+
+const newId = todoStore.addTodo(newTodo);
+console.log(`新待办事项的 ID: ${newId}`);
+
+// 根据 ID 获取待办事项
+const fetchedTodo = todoStore.getTodoById(newId);
+console.log('获取的待办事项:', fetchedTodo);

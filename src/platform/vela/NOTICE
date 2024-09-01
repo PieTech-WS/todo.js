@@ -1,0 +1,1 @@
+The code for the Vela platform may not be up-to-date and does not run directly on the Node.js platform. To run the Vela platform code you need aiot-toolkit and other dependencies for the Xiaomi Vela wearable device.
