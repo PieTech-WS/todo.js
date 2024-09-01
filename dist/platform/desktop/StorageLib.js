@@ -38,33 +38,33 @@ Object.defineProperty(exports, "__esModule", { value: true });
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-const fs = __importStar(require("node:fs"));
-class storage {
-    constructor(file) {
-        this.file = file;
+const fs = __importStar(require("fs"));
+const path = __importStar(require("path"));
+class JSONFileHandler {
+    constructor(filePath) {
+        this.filePath = path.resolve(filePath);
     }
-    ;
-    getData() {
-        try {
-            this.stringdata = fs.readFileSync(this.file, 'utf8'); // 将读取的内容存储到变量中
-            this.data = JSON.parse(this.stringdata);
-            console.log('File content:', this.data); // 在这里可以使用 fileContent 变量
-            return this.data;
-        }
-        catch (err) {
-            console.error('Error reading file:', err);
-            return;
-        }
-        ;
+    // 使用 require 同步读取 JSON 文件
+    readJSONSync() {
+        // 确保文件未被缓存
+        delete require.cache[require.resolve(this.filePath)];
+        const data = require(this.filePath);
+        return data;
     }
-    ;
-    formatData() {
-        this.data_formated = this.data;
+    // 使用 fs 模块异步读取 JSON 文件
+    async readJSON() {
+        const fileContent = await fs.promises.readFile(this.filePath, 'utf8');
+        return JSON.parse(fileContent);
     }
-    ;
-    writeData(key, value) {
-        this.formatData;
-        this.data_formated[key] = value;
+    // 使用 fs 模块同步写入 JSON 文件
+    writeJSONSync(data) {
+        const jsonString = JSON.stringify(data, null, 4); // 格式化 JSON 字符串
+        fs.writeFileSync(this.filePath, jsonString, 'utf8');
+    }
+    // 使用 fs 模块异步写入 JSON 文件
+    async writeJSON(data) {
+        const jsonString = JSON.stringify(data, null, 4); // 格式化 JSON 字符串
+        await fs.promises.writeFile(this.filePath, jsonString, 'utf8');
     }
 }
-exports.default = storage;
+exports.default = JSONFileHandler;

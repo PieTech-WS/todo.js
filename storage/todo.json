@@ -1,52 +1,8 @@
 {
     "usedID": [
-        "1",
-        "2",
-        "3",
-        "28993740-bad9-4171-8a12-d7c0a984eb3a"
+
     ],
     "todo": {
-        "1": {
-            "name": "Walk the dog",
-            "alert_time": {
-                "hour": 7,
-                "minute": 30
-            },
-            "recurring_reminders_enabled": true,
-            "recurring_reminders": "daily",
-            "priority": 2
-        },
-        "2": {
-            "name": "Walk the dog",
-            "alert_time": {
-                "hour": 7,
-                "minute": 30
-            },
-            "recurring_reminders_enabled": true,
-            "recurring_reminders": "daily",
-            "priority": 2
-        },
-        "3": {
-            "name": "Walk the dog",
-            "alert_time": {
-                "hour": 7,
-                "minute": 30
-            },
-            "recurring_reminders_enabled": true,
-            "recurring_reminders": "daily",
-            "priority": 2,
-            "completed": false
-        },
-        "28993740-bad9-4171-8a12-d7c0a984eb3a": {
-            "name": "Walk the dog",
-            "alert_time": {
-                "hour": 7,
-                "minute": 30
-            },
-            "recurring_reminders_enabled": true,
-            "recurring_reminders": "daily",
-            "priority": 2,
-            "completed": false
-        }
+
     }
 }

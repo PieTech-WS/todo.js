@@ -1,50 +1,33 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+/*
+   Copyright 2024 PowerAtom OpenSource
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TodoManage = void 0;
-const StorageLib_1 = __importDefault(require("../platform/desktop/StorageLib"));
-const todo_not_found_err = new Error('Get todo by id error: Not Found');
-class todoStorageTool {
-    load() {
-        this.Storage1 = new StorageLib_1.default('./src/utils/content.txt');
-        this.Storage1.getData();
-        this.Storage1.formatData();
-        this.todoStorage1 = this.Storage1.data_formated['todoStorage'];
-    }
-    ;
-    getTodoById(id) {
-        this.todo_ = this.todoStorage1.todo[id];
-        if (this.todo_ == undefined) {
-            throw todo_not_found_err;
-        }
-        return this.todo_;
-    }
-    ;
-    storageTodo(id, todo__) {
-        this.todoStorage1.todo[id] = todo__;
-    }
-    ;
-    saveTodoList() {
-    }
-}
-class TodoManage {
-    init_Manager() {
-        this.todoStoragetool_ = new todoStorageTool;
-        this.todoStoragetool_.load();
-    }
-    ;
-    createTodo(time_, name, recurring_reminders_enabled, priority, date_, recurring_reminders) {
-        const newtodo = {
-            name: name,
-            alert_time: time_,
-            alert_date: date_,
-            recurring_reminders_enabled: recurring_reminders_enabled,
-            priority: priority
-        };
-        this.todoStoragetool_.storageTodo('1', newtodo);
-        console.log(this.todoStoragetool_.todoStorage1);
-    }
-}
-exports.TodoManage = TodoManage;
+const todoStorage_1 = require("./todoStorage");
+const todoStore = new todoStorage_1.TodoStore('./storage/todo.json');
+// 添加新待办事项
+const newTodo = {
+    name: "Walk the dog",
+    alert_time: { hour: 7, minute: 30 },
+    recurring_reminders_enabled: true,
+    recurring_reminders: "daily",
+    priority: 2,
+    completed: false
+};
+const newId = todoStore.addTodo(newTodo);
+console.log(`新待办事项的 ID: ${newId}`);
+// 根据 ID 获取待办事项
+const fetchedTodo = todoStore.getTodoById(newId);
+console.log('获取的待办事项:', fetchedTodo);

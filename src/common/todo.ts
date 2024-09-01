@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-
+/*
 import config from '../../config/config.json';
 import { TodoStore } from './todoStorage';
 import { todo } from '../platform/desktop/Interfaces';
@@ -35,3 +35,5 @@ console.log(`新待办事项的 ID: ${newId}`);
 // 根据 ID 获取待办事项
 const fetchedTodo = todoStore.getTodoById(newId);
 console.log('获取的待办事项:', fetchedTodo);
+*/
+

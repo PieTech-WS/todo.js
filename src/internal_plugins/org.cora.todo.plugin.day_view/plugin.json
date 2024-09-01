@@ -1,0 +1,11 @@
+{
+    "name": {
+        "zh-CN": "日视图",
+        "en-US": "Day View"
+    },
+    "package": "org.cora.todo.plugin.day_view",
+    "author": "2minRain@CTWS",
+    "version": "0.0.1",
+    "platform": ["desktop", "vela"],
+    "main": "dist/**/day_view.js"
+}
