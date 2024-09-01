@@ -6,6 +6,8 @@
     "package": "org.cora.todo.plugin.day_view",
     "author": "2minRain@CTWS",
     "version": "0.0.1",
-    "platform": ["desktop", "vela"],
-    "main": "dist/**/day_view.js"
+    "platform": [
+        "desktop", 
+        "vela"
+    ]
 }

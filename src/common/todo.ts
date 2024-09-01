@@ -15,8 +15,6 @@
 */
 /*
 import config from '../../config/config.json';
-import { TodoStore } from './todoStorage';
-import { todo } from '../platform/desktop/Interfaces';
 const todoStore = new TodoStore('./storage/todo.json');
 
 // 添加新待办事项
@@ -37,3 +35,10 @@ const fetchedTodo = todoStore.getTodoById(newId);
 console.log('获取的待办事项:', fetchedTodo);
 */
 
+import { TodoStore } from './todoStorage';
+import { todo } from '../platform/desktop/Interfaces';
+import { PluginLoader } from './pluginSystem/plugin';
+
+const pluginLoader = new PluginLoader();
+
+pluginLoader.loadPluginsFromDirectory('./src/internal_plugins', 'desktop');
