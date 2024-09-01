@@ -41,8 +41,3 @@ export interface todoStorage{
     usedID: Array<number>,
     todo: todoList
 }
-
-export interface fileContent{
-    todoStorage: todoStorage,
-    todayList: Array<number>
-}

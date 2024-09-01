@@ -13,9 +13,8 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import * as fs from 'node:fs';
-import { todo, todoList, date, time, todoStorage, fileContent } from './Types'
-import storagelib from './StorageLib'
+import { todo, todoList, date, time, todoStorage, fileContent } from '../platform/desktop/Types'
+import storagelib from '../platform/desktop/StorageLib'
 
 const todo_not_found_err = new Error('Get todo by id error: Not Found')
 
@@ -25,7 +24,7 @@ class todoStorageTool{
     todo_!: todo;
     Storage1!: storagelib;
     load() {
-        this.Storage1 = new storagelib('./src/utils/content.txt')
+        this.Storage1 = new storagelib()
         this.Storage1.getData();
         this.Storage1.formatData<fileContent>();
         this.todoStorage1 = this.Storage1.data_formated['todoStorage'] as todoStorage;
