@@ -14,6 +14,7 @@
    limitations under the License.
 */
 
+/*
 import config from '../../config/config.json';
 
 
@@ -57,3 +58,13 @@ pluginLoader.loadPluginsFromDirectory('./src/internal_plugins', 'desktop');
 
 const dem = new demo()
 dem.main()
+*/
+import { ConfigManager } from "../platform/desktop/configlib";
+class TodoManager{
+    ConfigMana = new ConfigManager('./config/config.json');
+    todoStoragePath: string;
+    constructor() {
+        this.todoStoragePath = this.ConfigMana.getValue('storage.todo')
+    };
+    
+}

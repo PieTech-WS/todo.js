@@ -1,3 +1,7 @@
 {
-    "plugin-platform": "desktop"
+    "plugin-platform": "desktop",
+    "storage": {
+        "day_view": "unknown",
+        "todo": "./storage/todo.json"
+    }
 }
