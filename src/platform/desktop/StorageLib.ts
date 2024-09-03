@@ -20,6 +20,7 @@ export default class JSONFileHandler<T> {
     private filePath: string;
 
     constructor(filePath: string) {
+        // 在桌面环境下，使用 Node.js 的路径解析
         this.filePath = path.resolve(filePath);
     }
 

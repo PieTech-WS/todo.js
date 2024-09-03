@@ -13,27 +13,39 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-/*
+
 import config from '../../config/config.json';
-const todoStore = new TodoStore('./storage/todo.json');
 
-// 添加新待办事项
-const newTodo: todo = {
-    name: "Walk the dog",
-    alert_time: { hour: 7, minute: 30 },
-    recurring_reminders_enabled: true,
-    recurring_reminders: "daily",
-    priority: 2,
-    completed: false
-};
 
-const newId = todoStore.addTodo(newTodo);
-console.log(`新待办事项的 ID: ${newId}`);
+class demo{
+    private newTodoID!: string | null;
+    async main() {
+        const todoStore = new TodoStore('./storage/todo.json');
+        await todoStore.loadTodos()
+        // 添加新待办事项
+        const newTodo: todo = {
+            name: "Walk the dog",
+            alert_time: { hour: 7, minute: 30 },
+            recurring_reminders_enabled: true,
+            recurring_reminders: "daily",
+            priority: 2,
+            completed: false
+        };
 
-// 根据 ID 获取待办事项
-const fetchedTodo = todoStore.getTodoById(newId);
-console.log('获取的待办事项:', fetchedTodo);
-*/
+        this.newTodoID = await todoStore.addTodo(newTodo)
+        if (this.newTodoID) {
+            console.log(`新待办已创建, ID 为: ${this.newTodoID}`);
+        } else {
+            console.log("无法创建待办事项");
+            return;
+        }
+
+        // 根据 ID 获取待办事项
+        const fetchedTodo = todoStore.getTodoById(this.newTodoID);
+        console.log('获取的待办事项:', fetchedTodo);
+    }
+}
+
 
 import { TodoStore } from './todoStorage';
 import { todo } from '../platform/desktop/Interfaces';
@@ -42,3 +54,6 @@ import { PluginLoader } from './pluginSystem/plugin';
 const pluginLoader = new PluginLoader();
 
 pluginLoader.loadPluginsFromDirectory('./src/internal_plugins', 'desktop');
+
+const dem = new demo()
+dem.main()

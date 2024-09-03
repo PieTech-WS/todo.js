@@ -3,6 +3,8 @@ export interface Plugin {
     execute(data: any): void;
     onInit?(): void;
     onDestroy?(): void;
+    onBeforeCreateTodo?(): void|JSON|undefined;
+    onAfterCreateTodo?(): void|JSON|undefined;
 };
 export interface PluginConfig {
     name: {

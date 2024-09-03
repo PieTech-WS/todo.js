@@ -9,5 +9,8 @@
     "platform": [
         "desktop", 
         "vela"
+    ],
+    "permissions": [
+        "org.cora.todo.plugin.system.permission."
     ]
 }
